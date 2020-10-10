@@ -1,0 +1,174 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+    \setsansfont{Arial}
+    \setmonofont{Courier New}
+\usepackage[indentfirst]{xeCJK}
+    \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
+    \setCJKsansfont{KaiTi}
+\usepackage[UTF8]{ctex}
+\usepackage{cite}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+\setcounter{page}{1}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{人工智能+零售调查报告}
+
+\author{彭伟聪\\
+西北工业大学\\
+{\tt\small alexbeng@mail.nwpu.edu.cn}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+% \and
+% Second Author\\
+% Institution2\\
+% First line of institution2 address\\
+% {\tt\small secondauthor@i2.org}
+}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% Abstract
+\begin{abstract}
+   我将介绍我对于人工智能（artificial intelligence，下称AI）技术在零售领域应用的调查及分析结果。
+   在本文中，我关注的是人工智能技术在零售领域的应用现状，例如说Amazon的AmazonGo无人超市；
+   以及分析应用AI技术需要面对的核心问题，以及挑战；
+   最后，我将对AI+零售的前景进行一些粗浅地展望。
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{引言}
+
+首先，我们需要知道什么是零售。
+零售指的是从单一点直接向消费者出售少量商品，供其最终使用。
+同时，零售商将从制造商或批发商那里大量购买商品。
+最终整个供应链为制造商->批发商->零售商->消费者。
+
+零售业在我国已经发展了相当久的时间，经历了多次的商业模式变革\cite{徐印州2017新零售的产生与演进}。主要以下五次变革。
+
+\textbf{第一次零售变革}标志为百货商店的出现。这次变革在上世纪80年代基本完成。
+
+\textbf{第二次和第三次零售变革}标志分别为超级市场的出现以及连锁模式的兴起。这两次变革几乎同时完成。
+
+\textbf{第四次零售变革}是以淘宝创始为标志的电子商务革命。并最终在2012年，传统线下零售业发展出现了拐点，其增速出现历史性的下滑。
+
+\textbf{第五次零售变革}标志则是电商平台、物流配送和实体体验店紧密结合的“新零售”。这时候的零售脱离了原先单一功能的电商时代。
+
+
+就目前而言，新零售实现了线上线下的深度融合和相互促进。解决了线上零售红利消退，传统线下经营低效的痛点。
+
+然后，我们简单了解一下人工智能在新零售中发挥的作用。
+
+人工智能技术在新零售中扮演了一个相当重要的角色。以AmazonGo为例，其应用了大量的计算机视觉技术对人、商品等进行识别，实现了“拿了即走”的体验。
+此外，其还应用了人工智能技术对顾客的行为信息进行跟踪与分析，使得零售商能更可靠且系统的获得顾客喜好，减少了后续的人力，物力成本等。
+
+
+%------------------------------------------------------------------------
+\section{应用现状}
+
+应用现状将主要以AmazonGO和盒马鲜生为例进行展开。
+
+\subsection{AmazonGo}
+首先以AmazonGo无人超市为例。
+
+客户在AmazonGo进行购物的流程如下\cite{AmazonGO主页}：首先使用AmazonGo的App扫描二维码进入AmazonGo超市，
+然后从货架上取下想要的商品，AmazonGo的系统会自动添加到客户的账单上。
+反之，如果将商品放回，系统会自动地从客户的账单上删除这件商品。
+在客户选好商品后，即可直接走出商店，系统会自动地从客户的Amazon账户上扣费。
+
+Amazon于2015年申请了一个专利\cite{AmazonGO专利}，其描述了一个新型零售商店的工作方式。
+尽管并不能确定最终的AmazonGo是否就是使用专利中所述的方法，但是也可从中略窥一斑。
+
+根据专利中的描述。商店使用相机，传感器，RFID阅读器对客户以及他们所选的商品进行识别。
+专利中亦有提到使用人脸识别技术以及记录用户信息。其中，用户信息可能包括用户的图像、用户的详细信息————如身高和体重、
+用户的生物特征、用户购物历史等。
+
+AmazonGo应用了计算机视觉、深度学习以及传感器融合等技术。这使得其能检测客户拿走了什么商品、什么时候拿走了这个商品
+、维护一个虚拟的购物车并最终实现了客户能够即拿即走无需排队的购物体验。
+
+\subsection{盒马鲜生}
+
+接着以阿里巴巴的盒马鲜生（下称盒马）为例。
+
+盒马主攻领域是生鲜市场。它的运营的核心在于将线上线下融合。用户通过线上进行下单，然后线下店会快速配送产品，30分钟内高效送货上门。
+
+盒马的线下实体店一般会选择居住区较为密集的区域。
+其线下店与一般生鲜店不同在于其有餐饮区————客户可以选择付费将购买的生鲜进行烹饪从而进行用餐。
+此外，盒马选择的生鲜产品相较于一般生鲜店品种更为新颖。
+以及，盒马的商品销售标签均为电子墨水屏式，这使得其可以通过联网从而实现自动更新、溯源等功能。
+然后，盒马会有一套专门的链式传送系统，负责将客户从线上APP选择好的商品整合打包完成。
+最终，盒马使用基于AI的算法对配送路线进行规划，计算最优解，进行配送，完成整个订单。
+
+综上，盒马应用了相当多的工程创新————如电子墨水屏，链式传送系统等，以及应用了大量的AI算法来提升用户的购物体验。
+但是其链式传送系统等单件产品成本过高，也使得其需要较大前期投入，不利于盈利。
+
+
+除上述两个例子外，AI在零售领域还被广泛应用于例如虚拟试衣间、语音助手、人工智能顾问等场景上。
+
+%------------------------------------------------------------------------
+
+\section{核心问题及挑战}
+
+\subsection{核心问题}
+纵观零售的历次革命，其的出现都与新技术和新的时代背景密不可分。
+但是对于消费者，是为了实现更低的交易成本；对于零售商，是为了更高的效率；对于整个及零售行业，是为了更好的交易结构。
+这可能就是AI+零售也要面临的核心问题。
+
+\subsection{挑战}
+AI+零售带来的挑战有很多个方面。
+
+首先是失业问题。对于收银等从事较为机械简单工作的人而言，例如AmazonGo这样的无人超市会造成他们的失业，对社会带来一定冲击。
+
+其次是资源配置问题。即使是像盒马这样高效流转的线上线下相结合的店，其依旧会出现大量的临期食品，造成大量资源的浪费。
+
+然后是AI流于形式的问题。目前有相当多的超市有着所谓的自主收银机——需顾客自行扫码，打包，付款等。
+这从一定程度上减少了客户排队的压力，但是同时也增加了购物的工作量。从满足消费者需求的角度看，这一点值得商榷。
+
+最后是隐私问题。人脸识别技术以及语音识别技术这些大量应用于AI+零售场景的技术，从根源上就容易出现隐私问题。
+这些数据通过企业进行收集，当中用户的隐私也可能被泄露。
+而基于无线感知等相较传统感知技术更为保护隐私的技术目前还处于实验室阶段，尚未进行商用。
+
+
+
+\section{展望}
+
+对于上述的应用现状、核心问题及挑战。以下是本人一些比较粗浅的展望。
+
+对于隐私以及AI流于形式的问题，需要技术进一步不断的积累。例如无线感知技术的突破。
+
+对于资源配置问题，需要企业对于产品进行更全面的风险及成本分析，在应用前期便确定好盈利手段，而不是圈完投资便退市。
+
+
+
+{\small
+\bibliographystyle{ieee_fullname}
+\bibliography{egbib}
+}
+
+\end{document}
