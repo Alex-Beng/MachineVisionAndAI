@@ -205,7 +205,7 @@ function output_image = my_Middle_filter(noisy_image, kernal)
     padded_img = zeros(img_row+kernal_a*2, img_col+kernal_b*2);
     padded_img(kernal_a+1:kernal_a+img_row, kernal_b+1:kernal_b+img_col) = noisy_image;
 
-        output_image = zeros(img_row, img_col);
+    output_image = zeros(img_row, img_col);
     
     for i=1:img_row
         for j=1:img_col
