@@ -25,9 +25,11 @@ subplot(3,3,5);
 imshow(my_Gauss_filter_out);
 title('自行高斯滤波');
 % 使用matlab的filter
-gaus_img = uint8(gaus_img);
+gaus_img = double(uint8(gaus_img));
 kernal = fspecial('gaussian', 9); 
-matlab_filter_out = imfilter(kernal, gaus_img);
+matlab_filter_out = imfilter(gaus_img, kernal);
+size(matlab_filter_out)
+size(my_Gauss_filter_out)
 matlab_filter_out = uint8(matlab_filter_out);
 subplot(3,3,8);
 imshow(matlab_filter_out);
@@ -43,7 +45,7 @@ y = [];
 for i=x
     % fprintf("使用标准差为%f的高斯滤波器", i);
     kernal = fspecial('gaussian', 9, i); 
-    matlab_filter_out = imfilter(kernal, gaus_img);
+    matlab_filter_out = imfilter(gaus_img, kernal);
     matlab_filter_out = uint8(matlab_filter_out);
     snr = 20*log(norm(double(gray_img),'fro')/norm(double(gray_img-matlab_filter_out), 'fro')); 
     y = [y, snr];
@@ -66,6 +68,9 @@ subplot(2, 2, 3);
 imshow(matlab_filter_out);
 title("matlab中值滤波");
 figure(1);
+size(matlab_filter_out)
+size(my_Middle_filter_out)
+my_Middle_filter_out = double(my_Middle_filter_out);
 fprintf("高斯噪声图像自行中值滤波与matlab滤波图像差值绝对值之和为%d\n", sum(sum(abs(matlab_filter_out-my_Middle_filter_out))));
 
 
@@ -80,7 +85,9 @@ title('自行高斯滤波');
 % 使用matlab的filter
 salt_img = uint8(salt_img);
 kernal = fspecial('gaussian', 9); 
-matlab_filter_out = imfilter(kernal, salt_img);
+matlab_filter_out = imfilter(salt_img, kernal);
+size(matlab_filter_out)
+size(my_Gauss_filter_out)
 matlab_filter_out = uint8(matlab_filter_out);
 subplot(3,3,9);
 imshow(matlab_filter_out);
@@ -96,7 +103,7 @@ y = [];
 for i=x
     % fprintf("使用标准差为%f的高斯滤波器", i);
     kernal = fspecial('gaussian', 9, i); 
-    matlab_filter_out = imfilter(kernal, salt_img);
+    matlab_filter_out = imfilter(salt_img, kernal);
     matlab_filter_out = uint8(matlab_filter_out);
     snr = 20*log(norm(double(gray_img),'fro')/norm(double(gray_img-matlab_filter_out), 'fro')); 
     y = [y, snr];
@@ -132,7 +139,7 @@ imshow(my_sobel_out);
 title("my Sobel");
 
 % matlab实现
-matlab_edge_out = edge(gray_img, 'sobel');
+matlab_edge_out = edge(gray_img, 'sobel', [], 'horizontal');
 subplot(1, 2, 2);
 imshow(matlab_edge_out);
 title("matlab Sobel");
