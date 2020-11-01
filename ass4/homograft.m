@@ -1,4 +1,20 @@
+im_l = imread("Assignment-4-Material/Left.jpg");
+im_r = imread("Assignment-4-Material/Right.jpg");
 load("homo_pnts.mat");
+
+figure 
+imshow(im_l);
+hold on;
+plot(pnt2d_l(:,1), pnt2d_l(:,2), 'or');
+
+
+figure 
+imshow(im_r);
+hold on;
+plot(pnt2d_r(:,1), pnt2d_r(:,2), 'or');
+
+
+
 
 num_of_pnts = size(pnt2d_l, 1);
 
