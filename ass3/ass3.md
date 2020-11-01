@@ -82,3 +82,61 @@ title('\bf Matlab Harris Corners')
 
 ![Image 1](./pic/1.JPG)
 
+## 测试SIFT代码, 并运行图像匹配算法
+
+```matlab
+clear ; clc;
+
+% 获得灰度图(原图)
+raw_img = imread('../../ass2/big.JPG');
+raw_img = rgb2gray(raw_img);
+
+imwrite(raw_img, '0.jpg');
+
+degree3_img = imrotate(raw_img, 3);
+degree3_img = imresize(degree3_img, int32(size(degree3_img, [1,2])*1.2));
+% figure;
+% imshow(degree3_img);
+imwrite(degree3_img, '1.jpg');
+
+degree45_img = imrotate(raw_img, 45);
+degree45_img = imresize(degree45_img, int32(size(degree45_img, [1,2])*1.4));
+% figure;
+% imshow(degree45_img);
+imwrite(degree45_img, '2.jpg');
+
+degree90_img = imrotate(raw_img, 90);
+degree90_img = imresize(degree90_img, int32(size(degree90_img, [1,2])*0.8));
+% figure;
+% imshow(degree90_img);
+imwrite(degree90_img, '3.jpg');
+```
+第一步是获得不同旋转和尺度的图片。使用matlab内置函数可以轻松做到。以下是结果。
+
+![Image 2](./pic/2.JPG)
+
+
+第二步是测试sift.m的特征提取效果，并可视化。
+
+代码如下
+```matlab
+show_sift("./1.jpg");
+show_sift("./2.jpg");
+show_sift("./3.jpg");
+function show_sift(file_path)
+    [img, desp, pnts] = sift(file_path);
+    showkeys(img, pnts);
+end
+```
+
+![Image 3](./pic/3.JPG)
+
+第三步是运行匹配算法，并画线连接匹配点。
+
+```matlab
+match("./1.jpg", './0.jpg');
+match("./2.jpg", './0.jpg');
+match("./3.jpg", './0.jpg');
+```
+
+![Image 4](./pic/4.JPG)
