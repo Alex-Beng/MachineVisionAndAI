@@ -35,15 +35,15 @@ C = [C; 1];
 C = reshape(C, [3, 4]);
 [K, R, t] = vgg_KR_from_P(C, 0);
 
-n = size(pnt3d, 1);
-for cnt=1:n
-    t_p3d = pnt3d(cnt, :);
-    size(t_p3d')
-    t_p2d = K*[R,t]*[t_p3d, 1]';
-    t_p2d./t_p2d(3);
-    t_p2d = t_p2d';
-    plot(t_p2d(:,1),t_p2d(:,2),'or');
-end
+% n = size(pnt3d, 1);
+% for cnt=1:n
+%     t_p3d = pnt3d(cnt, :);
+%     size(t_p3d')
+%     t_p2d = K*[R,t]*[t_p3d, 1]';
+%     t_p2d./t_p2d(3);
+%     t_p2d = t_p2d';
+%     plot(t_p2d(:,1),t_p2d(:,2),'or');
+% end
 
 
 
